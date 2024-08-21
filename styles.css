@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap');
+@import url();
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+a{
+    letter-spacing: 2px;
+}
+
+
+.trans {
+    transform: rotateY(-180deg) !important;
+}
+
+.grad-skew {
+    transform: skewY(20deg) rotate(-20deg) !important;
+}
