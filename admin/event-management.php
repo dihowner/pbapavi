@@ -251,8 +251,6 @@ $events = $event_instance->get_events();
                     Swal.fire('Cancelled', 'Action not processed', 'info');
                 }
             });
-            
-
         });
     </script>
 </body>

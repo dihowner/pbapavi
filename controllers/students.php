@@ -43,25 +43,24 @@ if (isset($_POST['student_register'])) {
 	} else {
 		$sanitizedInputData = $validationResults;
 
-        if ($course_instance->get_course($sanitizedInputData['course']) === false) {
-            $_SESSION['formErrorMessage'] = "Course does not exist!";
-            $_SESSION['formInput'] = $_POST;
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-            exit();
-        } 
+		if ($course_instance->get_course($sanitizedInputData['course']) === false) {
+			$_SESSION['formErrorMessage'] = "Course does not exist!";
+			$_SESSION['formInput'] = $_POST;
+			header("Location: " . $_SERVER['HTTP_REFERER']);
+			exit();
+		}
 
-        $create_student = $student_instance->create_student($sanitizedInputData);
-        
-        if (!$create_student) {
-            $_SESSION['formErrorMessage'] = "Student registration failed. Please try again.";
-            $_SESSION['formInput'] = $_POST;
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-            exit();
-        }
-        unset($_SESSION['formInput']);
-        header("Location: " . BASE_URL . 'registration-success.php?id='.base64_encode($_SESSION['course_reg_id']));
-        die;
-    }
+		$create_student = $student_instance->create_student($sanitizedInputData);
+
+		if (!$create_student) {
+			$_SESSION['formErrorMessage'] = "Student registration failed. Please try again.";
+			$_SESSION['formInput'] = $_POST;
+			header("Location: " . $_SERVER['HTTP_REFERER']);
+			exit();
+		}
+		header("Location: " . BASE_URL . 'registration-success.php?id=' . base64_encode($_SESSION['course_reg_id']));
+		die;
+	}
 }
 
 if (isset($_POST['email_exists_student'])) {
@@ -84,11 +83,11 @@ if (isset($_POST['email_exists_student'])) {
 		$getStudent = $student_instance->get_student($sanitizedInputData['email']);
 		if ($getStudent === false) {
 			echo json_encode(["message" => "No student is associated with this email address", "status" => false]);
-			die;	
+			die;
 		}
-		echo json_encode(["message" => "Email already belongs to another student (".$getStudent['full_name'].")", "status" => true]);
+		echo json_encode(["message" => "Email already belongs to another student (" . $getStudent['full_name'] . ")", "status" => true]);
 		die;
-    }
+	}
 }
 
 if (isset($_POST['admin_create_student'])) {
@@ -146,14 +145,39 @@ if (isset($_POST['admin_create_student'])) {
 
 		if (!$result) {
 			$_SESSION['formInput'] = $_POST;
-            $_SESSION['formErrorMessage'] = "Student registration failed. Please try again.";
-            $_SESSION['formInput'] = $_POST;
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-            exit();
+			$_SESSION['formErrorMessage'] = "Student registration failed. Please try again.";
+			$_SESSION['formInput'] = $_POST;
+			header("Location: " . $_SERVER['HTTP_REFERER']);
+			exit();
 		}
 		$_SESSION['formSuccessMessage'] = "Student registered successfully.";
 		header("Location: " . $_SERVER['HTTP_REFERER']);
-		exit();	
+		exit();
 	}
 }
-?>
+
+if (isset($_GET['verify-certificate'])) {
+	$studentId = $_GET['studentid'];
+
+	$studentCourseData = $course_instance->get_course_registration($studentId);
+	if ($studentCourseData === false) { ?>
+		<script>
+			alert("Student not found. Please provide a valid registration number");
+			window.location.href = "<?php echo BASE_URL; ?>";
+		</script>
+	<?php 
+		die;
+	}
+
+	if ($studentCourseData->is_completed != '1') { ?>
+		<script>
+			alert("Student is yet to complete his/her training. Please check back later to verify student progress.");
+			window.location.href = "<?php echo BASE_URL; ?>";
+		</script>
+	<?php 
+		die;
+	}
+
+	$courseRegId = $studentCourseData->id;
+	$course_instance->generateStudentCertificate($courseRegId);
+}

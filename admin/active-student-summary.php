@@ -1,20 +1,20 @@
-<?php
+<?php 
 $pageTitle = "Active Student Summary - Pavi Admin";
-include_once '../components/admin-head.php';
-$course_instance = new Courses($db);
-$activeCourses = $course_instance->get_active_course_registration("active");
+include_once '../components/admin-head.php'; 
+$student_instance = new Students($db);
+$students = $student_instance->get_students("active");
 ?>
 
 <body>
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
-        <?php
-        include_once COMPONENT_DIR . "admin-navbar.php";
-        include_once COMPONENT_DIR . "admin-sidemenu.php";
+        <?php         
+            include_once COMPONENT_DIR."admin-navbar.php";
+            include_once COMPONENT_DIR."admin-sidemenu.php";
         ?>
 
         <main class="p-4 md:ml-64 min-h-screen pt-20 ">
             <div class="container mx-auto py-12">
-
+                
                 <div
                     class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
                     <div class="w-full mb-1">
@@ -44,9 +44,9 @@ $activeCourses = $course_instance->get_active_course_registration("active");
                 <div class="flex flex-col">
                     <div class="overflow-x-auto">
                         <div class="inline-block min-w-full align-middle">
-                            <?php echo $utility->displayFormError();
+                        <?php echo $utility->displayFormError();
                             echo $utility->displayFormSuccess();
-                            ?>
+                        ?>
                             <div class="overflow-hidden shadow">
                                 <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
                                     <thead class="bg-gray-100 dark:bg-gray-700">
@@ -60,7 +60,7 @@ $activeCourses = $course_instance->get_active_course_registration("active");
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-xs font-bold text-center text-gray-500 uppercase dark:text-gray-400">
-                                                Course Details
+                                                Course Counter
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-xs font-bold text-center text-gray-500 uppercase dark:text-gray-400">
@@ -71,63 +71,60 @@ $activeCourses = $course_instance->get_active_course_registration("active");
                                     <tbody
                                         class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
 
-                                        <?php
-                                        if (count($activeCourses) > 0) {
-                                            foreach ($activeCourses as $courseIndex => $course) {
-                                                $studentData = $course['student'];
-                                                $courseData = $course['course'];
-                                                $courseRegId = $course['id'];
-                                                $courseId = $course['course_id'];
-                                                $studentFullName = $studentData['full_name'];
-                                                $courseName = $courseData['course_name'];
-                                        ?>
+                                        <?php 
+                                        if (count($students) > 0) {
+                                            foreach ($students as $studentIndex => $student) {
+                                                $studentId = $student['student_id'];
+                                                $studentFullName = $student['full_name'];
+                                                $courseEnrol = $student['total_courses_enrol'];
+                                                $activeCourse = $student['active_course'];
+                                            ?>
                                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                     <td
                                                         class=" max-w-sm p-4 overflow-hidden text-base text-center font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                                                        <?php echo $courseIndex + 1; ?>
+                                                        <?php echo $studentIndex + 1; ?>
                                                     </td>
-
+                                                    
                                                     <td class="flex items-center justify-center p-4 space-x-6 whitespace-nowrap">
                                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                                             <div class="text-base font-semibold text-gray-900 dark:text-white">
                                                                 <?php echo $studentFullName; ?> <br>
                                                                 <span class="d-flex" style="color: #fb7d8b">
-                                                                    Email: <?php echo $studentData['email_address']; ?>
+                                                                    Email: <?php echo $student['email_address']; ?>
                                                                 </span> <br>
                                                                 <span class="d-flex" style="color: #d8bfb7">
-                                                                    Mobile Number: <?php echo $studentData['mobile_number']; ?>
+                                                                    Mobile Number: <?php echo $student['mobile_number']; ?>
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </td>
-
+                                                    
                                                     <td class="max-w-sm p-4 overflow-hidden text-base text-center font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
                                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                                             <div class="text-base  dark:text-white">
-                                                                <strong><?php echo $courseName; ?></strong>
+                                                                Course Enrol: <?php echo number_format($courseEnrol); ?>
                                                             </div>
                                                             <span class="d-flex" style="color: #fb7d8b">
-                                                                Course Fee: <?php echo number_format($courseData['course_fee'], 2); ?>
+                                                                Active Course: <?php echo number_format($activeCourse); ?>
                                                             </span>
                                                         </div>
                                                     </td>
-
+                                                    
                                                     <td class="max-w-sm p-4 overflow-hidden text-base text-center font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
                                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                                             <div class="text-base  dark:text-white">
-                                                                <button type="button" data-name="<?php echo $studentFullName; ?>" data-course-name="<?php echo $courseName; ?>"
-                                                                    data-id="<?php echo $courseRegId; ?>"
-                                                                    class="certifyStudent items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-400">
-                                                                    Certify Student
-                                                                </button>
+                                                                Course Enrol: <?php echo number_format($courseEnrol); ?>
                                                             </div>
+                                                            <span class="d-flex" style="color: #fb7d8b">
+                                                                Active Course: <?php echo number_format($activeCourse); ?>
+                                                            </span>
                                                         </div>
-                                                    </td>
+                                                    </td>                                                   
 
                                                 </tr>
-                                        <?php }
+                                            <?php }
                                         } ?>
-
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -138,32 +135,7 @@ $activeCourses = $course_instance->get_active_course_registration("active");
             </div>
         </main>
     </div>
-    <?php include_once COMPONENT_DIR . "admin-footer-script.php"; ?>
-
-    <script>
-        $(".certifyStudent").on("click", function() {
-            let courseId = $(this).attr('data-id');
-            let studentName = $(this).attr('data-name');
-            let courseName = $(this).attr('data-course-name');
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: `Are you sure you want to certify ${studentName} in ${courseName} as a professional. Certifying this student means the student has completed for this course.`,
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Certify Student!',
-                cancelButtonText: 'No, Cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Perform the delete action here
-                    window.location.href = "<?php echo CONTROLLER_PATH; ?>courses.php?certify_student_course=" + courseId;
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire('Cancelled', 'Action not processed', 'info');
-                }
-            });
-        });
-    </script>
+    <?php include_once COMPONENT_DIR."admin-footer-script.php"; ?>
 </body>
 
 </html>

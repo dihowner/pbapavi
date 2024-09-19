@@ -1,17 +1,17 @@
 <?php
-    $pageTitle = "PAVI Business MasterClass";
-    require_once "./components/front-head.php";
-    
-    $event_instance = new events($db);
-    $events = $event_instance->get_events();
+$pageTitle = "PAVI Business MasterClass";
+require_once "./components/front-head.php";
+
+$event_instance = new events($db);
+$events = $event_instance->get_events();
 ?>
 
 <body
-    class='scroll-smooth text-gray-950 dark:text-white bg-gradient-to-br lg:bg-gradient-to-r from-gray-100 via-red-300 to-red-500 bg-grad dark:from-gray-900  dark:via-gray-900 dark:to-gray-900 '>
+    class='scroll-smooth text-gray-950 dark:text-white bg-gradient-to-br lg:bg-gradient-to-r from-gray-100 via-red-500 to-red-500 bg-grad dark:from-gray-900  dark:via-gray-900 dark:to-gray-900 '>
     <header class="relative overflow-hidden w-full h-fit lg:h-dvh">
         <?php include_once './components/front-nav.php'; ?>
         <div
-            class="w-0 h-0 lg:w-64 lg:h-dvh bg-white/50 border-4  border-white animate__animated animate__fadeInLeft animate__delay-3s z-40 lg:absolute lg:right-[28rem] lg:top-0 grad-skew">
+            class="w-0 h-0 lg:w-64 lg:h-dvh border-0 bg-white/50 lg:border-4  border-white animate__animated animate__fadeInLeft animate__delay-3s z-40 lg:absolute lg:right-[28rem] lg:top-0 grad-skew">
         </div>
 
         <!-- Form modal -->
@@ -37,10 +37,10 @@
             </div>
 
             <div
-                class="relative h-[35rem] w-full lg:absolute  lg:-right-[9rem] lg:h-[62rem] lg:w-6/12 lg:-top-[4rem] overflow-hidden ">
+                class="relative h-0 w-0 lg:absolute  lg:-right-[9rem] lg:h-[62rem] lg:w-6/12 lg:-top-[4rem] overflow-hidden ">
 
                 <img src="img/b-a-hero.png" alt="img/b-a-hero.png"
-                    class="w-full h-full animate__animated animate__fadeInRight animate__delay-1s">
+                    class="hidden lg:inline w-full h-full animate__animated animate__fadeInRight animate__delay-1s">
             </div>
         </section>
     </header>
@@ -118,70 +118,7 @@
         </div>
     </div>
 
-    <div id="certificate-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-        class="bg-gray-800/80 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[1000] justify-center items-center w-full lg:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-2xl max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white border-2  rounded-lg border-gray-600 shadow dark:bg-gray-700">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 lg:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        ----------------------
-                    </h3>
-                    <button type="button"
-                        class=" bg-transparent hover:bg-gray-200 text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="certificate-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-4 lg:p-5 space-y-4">
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio repudiandae, nulla quam dolor
-                        sequi earum,
-                        provident exercitationem eos id incidunt odit perspiciatis magnam aperiam rem fuga magni,
-                        adipisci consectetur
-                    </p>
-                    <form>
-                        <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
-                            Search
-                        </label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input type="search" id="search"
-                                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
-                                placeholder="Search" required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-[#ff0000] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-[#ff0000] dark:focus:ring-red-800">Search</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- Modal footer -->
-                <!-- <div class="flex justify-end items-center p-4 lg:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button data-modal-hide="certificte-modal" type="button"
-                        class="text-white bg-[#ff0000] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-[#ff0000] dark:focus:ring-red-800">I
-                        accept</button>
-                    
-                </div> -->
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <main class="px-5 lg:px-20 my-28 space-y-28">
+    <main class="px-5 lg:px-20 my-28 space-y-28" id="how-it-works">
         <section
             class="grid grid-cols-1 lg:grid-cols-2 lg:gap-10 bg-white dark:bg-gray-950 py-10 rounded-lg px-6 lg:px-20">
             <div class="flex justify-center items-center order-2 lg:order-1">
@@ -210,10 +147,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Carousel to see events -->
-            <?php include_once COMPONENT_DIR."event-carousel.php";?>
-            
+            <?php include_once COMPONENT_DIR . "event-carousel.php"; ?>
+
         </section>
 
         <section
@@ -228,23 +165,19 @@
                             <path
                                 d="M7.833 2c-.507 0-.98.216-1.318.576A1.92 1.92 0 0 0 6 3.89V21a1 1 0 0 0 1.625.78L12 18.28l4.375 3.5A1 1 0 0 0 18 21V3.889c0-.481-.178-.954-.515-1.313A1.808 1.808 0 0 0 16.167 2H7.833Z" />
                         </svg>
-
-
                     </div>
                     <h3 class="bg-[#ff0000] w-fit text-2xl lg:text-4xl font-extrabold text-white rounded-md p-3 mb-5">
                         What to Achieve:
                     </h3>
-                    <p class="text-lg lg:text-xl font-light ">
+                    <p class="text-lg lg:text-xl font-light">
                         To educate people on relevant skills and knowledge towards
                         economic empowerment to give their lives a meaning through
                         the use of the tools on PAVI platform.
-
                     </p>
-
                 </div>
 
             </div>
-            <div class="w-full lg:w-9/12 h-80">
+            <div class="w-full lg:w-6/12 h-80">
                 <img src="img/target.jpg" alt="" class="w-full h-full rounded-2xl">
             </div>
         </section>
@@ -270,7 +203,7 @@
                         It provides unparalleled strategic benefits to Business Owners
                         in the following ways;
                     </p>
-                    <ul class="list-disc pl-5 my-10 text-md lg:text-xl font-light space-y-3">
+                    <ul class="list-disc pl-5 my-10 text-sm lg:text-md font-light space-y-3">
                         <li>
                             Expert Guidance: Learn from industry leaders with proven
                             success
@@ -278,7 +211,6 @@
                         <li>
                             Actionable Strategies: Implement practical techniques to
                             drive growth.
-
                         </li>
                         <li>
                             Networking Opportunities: Connect with like-minded
@@ -287,30 +219,24 @@
                         <li>
                             Problem-solving skills: Overcome challenges with
                             confidence.
-
                         </li>
                         <li>
                             Business Growth: Unlock your business’s full potential.
-
                         </li>
                         <li>
                             Lasting Success: Achieve sustainable and profitable results
-
                         </li>
                         <li>
                             Growth Acceleration: Opportunity to scale your business
                             quickly and sustainably.
-
                         </li>
                         <li>
                             Unlimited Access to Fund: Connect with a pool of financial
                             supporters
-
                         </li>
                     </ul>
 
                 </div>
-
             </div>
             <div class="w-full lg:w-9/12 h-80 order-1 lg:order-2">
                 <img src="img/question-symbl.jpg" alt="" class="w-full h-full rounded-2xl">
@@ -336,7 +262,7 @@
                         Who can join the Master Class?
                     </h3>
 
-                    <ul class="list-disc pl-5 my-10 text-md lg:text-xl font-light space-y-3">
+                    <ul class="list-disc pl-5 my-10 text-sm lg:text-md font-light space-y-3">
                         <li>
                             Young Men & Women Aspiring to Start Business
                         </li>
@@ -367,20 +293,14 @@
             </div>
         </section>
         <section>
-            <a href="#"
-                class="bg-[#ff0000] ml-auto w-fit inline-block text-xl lg:text-5xl font-bold text-white rounded-lg px-5 py-3 mb-5">
-                Sign up
+            <a href="register.php"
+                class="bg-[#ff0000] ml-auto w-fit inline-block text-3xl lg:text-5xl font-bold text-white rounded-lg px-5 py-3 mb-5">
+                Register Now
             </a>
-            <p class="text-lg mg:text-xl">
-                If already registered as a seller? <a href="#" class="text-[#ff0000]">Login</a>
-            </p>
         </section>
     </main>
 
-
-
-
-
+    <?php include_once COMPONENT_MODAL_DIR . 'verify-certificate.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
     <script>
@@ -403,7 +323,6 @@
                 headerSec.classList.add('lg:-top-[2.5rem]');
             }
         });
-
     </script>
 </body>
 

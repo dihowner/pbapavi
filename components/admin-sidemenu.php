@@ -1,7 +1,27 @@
+<style>
+      .custom-scrollbar {
+    -ms-overflow-style: auto !important;  /* IE and Edge */
+    scrollbar-width: none !important;  /* Firefox */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px !important;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4A5568; /* Tailwind's gray-700 */
+    border-radius: 4px !important;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #E2E8F0 !important; /* Tailwind's gray-200 */
+  }
+</style>
+
 <aside
-            class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+            class="overflow-hidden custom-scrollbar overflow-y-auto fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
             aria-label="Sidenav" id="drawer-navigation">
-            <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+            <div class=" py-5 px-3 h-fit bg-white dark:bg-gray-800">
 
                 <ul class="space-y-6 md:mt-10">
                     <li>
@@ -44,7 +64,7 @@
                             aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
 
 
-                            <svg class="w-6 h-6 text-gray-500 transition duration-75 "
+                            <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:group-hover:text-white dark:group-focus:text-white"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 viewBox="0 0 24 24">
                                 <path fill-rule="evenodd"
@@ -78,7 +98,7 @@
                                 </a>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <a href="student-management.php"
                                     class="flex items-center p-2 text-base font-medium  rounded-lg dark:text-white hover:bg-[#ff0000] focus:bg-[#ff0000] group">
                                     <svg class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-white group-focus:text-white"
@@ -91,6 +111,22 @@
                                     <span
                                         class="ml-3 text-gray-900 group-hover:text-white group-focus:text-white text-sm dark:text-white">Student
                                         Management</span>
+                                </a>
+                            </li> -->
+
+                            <li>
+                                <a href="pending-student.php"
+                                    class="flex items-center p-2 text-base font-medium  rounded-lg dark:text-white hover:bg-[#ff0000] focus:bg-[#ff0000] group">
+                                    <svg class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-white group-focus:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span
+                                        class="ml-3 text-gray-900 group-hover:text-white group-focus:text-white text-sm dark:text-white">Pending Student
+                                    </span>
                                 </a>
                             </li>
 
@@ -106,6 +142,22 @@
                                     </svg>
                                     <span
                                         class="ml-3 text-gray-900 group-hover:text-white group-focus:text-white text-sm dark:text-white">Active Student
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="active-student-summary.php"
+                                    class="flex items-center p-2 text-base font-medium  rounded-lg dark:text-white hover:bg-[#ff0000] focus:bg-[#ff0000] group">
+                                    <svg class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-white group-focus:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span
+                                        class="ml-3 text-gray-900 group-hover:text-white group-focus:text-white text-sm dark:text-white">Active Student Summary
                                     </span>
                                 </a>
                             </li>
@@ -127,6 +179,80 @@
 
                         </ul>
                     </li>
+                    
+                    <li>
+                        <button type="button"
+                            class="flex items-center justify-between p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-admin" data-collapse-toggle="dropdown-admin">
+
+
+                            <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:group-hover:text-white dark:group-focus:text-white"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            <span class=" text-gray-900 dark:text-white">Admin
+                                Management</span>
+                            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <ul id="dropdown-admin" class="hidden py-2 px-2 space-y-2 bg-gray-100 dark:bg-gray-900 rounded-md mt-3 mx-2">
+                            <li>
+                                <a href="add-admin.php"
+                                    class="flex items-center p-2 text-base font-medium  rounded-lg dark:text-white hover:bg-[#ff0000] focus:bg-[#ff0000] group">
+                                    <svg class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-white group-focus:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    
+                                    <span
+                                        class="ml-3 text-gray-900 group-hover:text-white group-focus:text-white text-sm dark:text-white">Add Admin</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="roles-management.php"
+                                    class="flex items-center p-2 text-base font-medium  rounded-lg dark:text-white hover:bg-[#ff0000] focus:bg-[#ff0000] group">
+                                    <svg class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-white group-focus:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span
+                                        class="ml-3 text-gray-900 group-hover:text-white group-focus:text-white text-sm dark:text-white">Roles
+                                        Management</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="admin-management.php"
+                                    class="flex items-center p-2 text-base font-medium  rounded-lg dark:text-white hover:bg-[#ff0000] focus:bg-[#ff0000] group">
+                                    <svg class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-white group-focus:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span
+                                        class="ml-3 text-gray-900 group-hover:text-white group-focus:text-white text-sm dark:text-white">Admin Management
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li>
                         <a href="event-management.php"
@@ -144,13 +270,13 @@
                             </span>
                         </a>
                     </li>
-
+<!-- 
                     <li>
                         <button type="button"
                             class="flex items-center justify-between p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             aria-controls="dropdown-certificate" data-collapse-toggle="dropdown-certificate">
 
-                            <svg class="w-6 h-6 text-gray-500 transition duration-75  group-hover:text-white group-focus:text-white"
+                            <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:group-hover:text-white dark:group-focus:text-white"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 fill="currentColor" viewBox="0 0 24 24">
                                 <path
@@ -196,12 +322,12 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
 
             </div>
             <div
-                class="absolute bottom-0 left-0 justify-center items-center p-4 space-x-4 w-full grid grid-cols-4 bg-white dark:bg-gray-800 z-20">
+                class=" justify-center items-center p-4 space-x-4 w-full grid grid-cols-4 bg-white dark:bg-gray-800 z-20">
                 <a href="logout.php"
                     class="flex col-span-3 items-center justify-center gap-3 py-2 px-4 mx-5 my-4 rounded text-center text-white font-bold text-sm bg-[#ff0000] cursor-pointer">
                     <svg aria-hidden="true"

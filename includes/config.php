@@ -8,7 +8,7 @@ ini_set('post_max_size', '20M');
 ini_set('max_execution_time', 600);
 ini_set('session.gc_maxlifetime', 24 * 60 * 40);
 
-session_set_cookie_params(3600);
+// session_set_cookie_params(3600);
 
 ob_start();
 session_start();
@@ -46,13 +46,16 @@ define('MODEL_DIR', ROOT . BASE_PATH . 'models/');
 define('CONTROLLER_DIR', ROOT . BASE_PATH . 'controllers/');
 define('INCLUDES_DIR', ROOT . BASE_PATH . 'includes/');
 define('COMPONENT_DIR', ROOT . BASE_PATH . 'components/');
+define('FONT_DIR', ROOT . BASE_PATH . 'fonts/');
 define('COMPONENT_MODAL_DIR', ROOT . BASE_PATH . 'components/modals/');
 
 define('CONTROLLER_PATH', SCHEME . '://' . SERVER . BASE_PATH . 'controllers/');
 
+define('TEMPLATE_DIR', 'templates/');
 define('UPLOADS_DIR', 'uploads/');
 define('EVENT_DIR', 'events/');
 define('UPLOADS_PATH',  ROOT . BASE_PATH . UPLOADS_DIR);
+define('TEMPLATE_PATH',  ROOT . BASE_PATH . TEMPLATE_DIR);
 
 
 // Requirements
@@ -82,6 +85,7 @@ include_once MODEL_DIR . 'Students.php';
 include_once MODEL_DIR . 'Banks.php';
 include_once MODEL_DIR . 'Admins.php';
 include_once MODEL_DIR . 'Events.php';
+include_once MODEL_DIR . 'Roles.php';
 
 // Default Time zone
 date_default_timezone_set("Africa/Lagos");

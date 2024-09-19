@@ -76,6 +76,31 @@ class Students extends Utility
                 }
             break;
 
+            case "pending":
+                $result = $this->db->getRecFrmQry(
+                    "SELECT 
+                            {$this->table->students}.student_id, {$this->table->students}.first_name, {$this->table->students}.last_name, 
+                            {$this->table->students}.email_address, {$this->table->students}.mobile_number,
+                            COUNT({$this->courses->table->course_registration}.course_id) AS total_courses_enrol,
+                            SUM(CASE WHEN {$this->courses->table->course_registration}.is_completed = '0' THEN 1 ELSE 0 END) AS active_course
+                        FROM 
+                            {$this->table->students}
+                        INNER JOIN 
+                            {$this->courses->table->course_registration} ON {$this->table->students}.student_id = {$this->courses->table->course_registration}.student_id
+                        INNER JOIN 
+                            {$this->courses->table->courses} ON {$this->courses->table->course_registration}.course_id = {$this->courses->table->courses}.course_id
+                         WHERE course_registration.has_paid='0' AND course_registration.is_completed='0'
+                        GROUP BY {$this->table->students}.student_id"
+                );
+
+                if ($result !== false) {
+                    $result = array_map(function($student) {
+                        $student['full_name'] = $student['first_name'] . " " . $student['last_name'];
+                        return $student;
+                    }, $result);        
+                }
+            break;
+
             case "active":
                 $result = $this->db->getRecFrmQry(
                     "SELECT 
@@ -89,7 +114,7 @@ class Students extends Utility
                             {$this->courses->table->course_registration} ON {$this->table->students}.student_id = {$this->courses->table->course_registration}.student_id
                         INNER JOIN 
                             {$this->courses->table->courses} ON {$this->courses->table->course_registration}.course_id = {$this->courses->table->courses}.course_id
-                         WHERE course_registration.is_completed='0'
+                         WHERE course_registration.has_paid='1' AND course_registration.is_completed='0'
                         GROUP BY {$this->table->students}.student_id"
                 );
 
@@ -114,7 +139,7 @@ class Students extends Utility
                             {$this->courses->table->course_registration} ON {$this->table->students}.student_id = {$this->courses->table->course_registration}.student_id
                         INNER JOIN 
                             {$this->courses->table->courses} ON {$this->courses->table->course_registration}.course_id = {$this->courses->table->courses}.course_id
-                        WHERE course_registration.is_completed='1'
+                        WHERE course_registration.has_paid='1' AND course_registration.is_completed='1'
                         GROUP BY 
                             {$this->table->students}.student_id"
                 );

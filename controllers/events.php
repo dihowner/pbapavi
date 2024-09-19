@@ -93,7 +93,6 @@ if (isset($_POST['create_event'])) {
             exit();
         }
         $_SESSION['formSuccessMessage'] = "Event created successfully";
-        unset($_SESSION['formInput']);
         header("Location: " . $_SERVER['HTTP_REFERER']);
         die;
     }
@@ -228,7 +227,6 @@ if (isset($_POST['edit_event'])) {
             exit();
         }
         $_SESSION['formSuccessMessage'] = "Event updated successfully";
-        unset($_SESSION['formInput']);
         header("Location: " . $_SERVER['HTTP_REFERER']);
         die;
     }

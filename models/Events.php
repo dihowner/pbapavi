@@ -24,7 +24,7 @@ class Events extends Utility
         return $this->responseBody;
     }
 
-    public function update_event(array $eventData, int $eventId) : bool|array {
+    public function update_event(array $eventData, int $eventId) : bool {
         try {
             $this->db->update($this->table->events, $eventData, array('event_id' => $eventId));
             $this->responseBody =  true;

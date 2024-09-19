@@ -17,7 +17,7 @@
             <!-- Form Section -->
             <div class="p-8 w-full md:w-5/12  rounded-lg">
                 <div class="flex justify-center mb-9">
-                    <a href="https://pavi.ng" target="_blank">
+                    <a href="https://pba.pavi.ng" target="_blank">
                         <img src="https://pavi.ng/storage/app/public/company/2024-04-18-6621416d477fe.png" alt=""
                             class="logo w-40 h-14">
                     </a>
